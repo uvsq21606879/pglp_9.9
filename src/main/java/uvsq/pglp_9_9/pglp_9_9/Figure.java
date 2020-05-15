@@ -42,5 +42,5 @@ public abstract class Figure {
 		System.out.print(Figure + " : ");
 	}
 	
-	
+	 public abstract boolean equals(final Object obj);
 }
