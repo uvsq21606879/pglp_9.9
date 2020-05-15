@@ -7,7 +7,7 @@ public abstract class Figure {
 	/**
 	 * nom de le Figure.
 	 */
-	private String Figure;
+	protected String Figure;
 	/**
 	 * avoir le nom de le Figure.
 	 * @return le nom de la Figure.
@@ -41,4 +41,6 @@ public abstract class Figure {
 	public void afficherFigure() {
 		System.out.print(Figure + " : ");
 	}
+	
+	
 }
