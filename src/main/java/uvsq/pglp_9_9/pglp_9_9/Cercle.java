@@ -93,7 +93,7 @@ public class Cercle extends Figure {
     /**
      * Affiche les informations du cercle.
      */
-    public void affiche() {
+    public void afficher() {
     	 super.afficherFigure();
          System.out.println("Cercle ("
                  + "centre = " + Centre + ", rayon = " + Rayon + ")");
