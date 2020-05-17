@@ -16,11 +16,12 @@ public class Cercle extends Figure {
      * @param nomCercle le nom du cercle
      * @param P le centre du cercle
      * @param rayon le rayon du cercle
+     * @throws Exception 
      */
-    public Cercle(final String nomCercle, Point P, int rayon) {
+    public Cercle(final String nomCercle, Point P, int rayon) throws Exception {
         super(nomCercle);
         this.Centre = P;
-        this.Rayon = rayon;
+        setRayon(rayon);
     }
    
     /**
@@ -98,6 +99,10 @@ public class Cercle extends Figure {
          System.out.println("Cercle ("
                  + "centre = " + Centre + ", rayon = " + Rayon + ")");
 
+    }
+    @Override
+    public String toString() {
+    	return "Cercle (" + "centre = " + Centre + ", rayon = " + Rayon + ")";
     }
 	
 	

@@ -11,11 +11,11 @@ public class Carre extends Figure {
      */
     private int Longueur;
 
-	protected Carre(String newFigure, Point HG, int longueur) {
+	protected Carre(String newFigure, Point HG, int longueur) throws Exception {
 		super(newFigure);
 		// TODO Auto-generated constructor stub
 		this.HautGauche = HG.clone();
-        this.Longueur=longueur;
+        setLongueur(longueur);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class Carre extends Figure {
     public void afficher() {
         super.afficherFigure();
         System.out.println("Carre (longueur = "
-                + Longueur + ", position du coin en haut à gauche = " + HautGauche + ")");
+                + Longueur + ", position du Point en haut à gauche = " + HautGauche + ")");
     }
     
     /**
@@ -85,6 +85,10 @@ public class Carre extends Figure {
             throw new Exception();
         }
     }
-	
+	@Override
+    public String toString() {
+		return "Carre (longueur = " + Longueur + ", position du Point en haut à gauche = " + HautGauche + ")";
+    		
+    }
 	
 }
