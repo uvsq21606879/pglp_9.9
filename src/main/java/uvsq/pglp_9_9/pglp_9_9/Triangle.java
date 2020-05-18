@@ -91,6 +91,17 @@ public class Triangle extends Figure {
 	        }
 	        return true;
 	    }
+	    
+	    /**
+	     * Retourne le triangle sous forme d'une chaine de caracteres.
+	     */
+	    @Override
+	    public String toString() {
+	    	
+	         return " Triangle (" + this.Point1 + ", " + this.Point2
+	                + ", " + this.Point3 + ").";
+	       
+	    }
 
 
 	

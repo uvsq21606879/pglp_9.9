@@ -17,7 +17,10 @@ public class App
         
         Carre r = new Carre("r", new Point(1,1), 10);
         r.afficher();
-        System.out.println( r );
+        System.out.println( c1 );
+        
+        Rectangle R = new Rectangle("R", new Point(4,5), 5, 7);
+		R.afficher();
         
     }
 }

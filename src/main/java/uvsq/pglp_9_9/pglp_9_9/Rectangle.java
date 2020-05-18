@@ -16,12 +16,12 @@ public class Rectangle extends Figure {
 	private int Largeur;
 
 
-	protected Rectangle(final String nomRectangle, Point HG, int longueur,int largeur) {
+	protected Rectangle(final String nomRectangle, Point HG, int longueur,int largeur) throws Exception {
 		super(nomRectangle);
 		// TODO Auto-generated constructor stub
 		this.HautGauche = HG.clone();
-		this.Longueur = longueur;
-		this.Largeur = largeur;
+		this.setLongueur(longueur);
+		this.setLargeur(largeur);
 	}
 
 	@Override
@@ -85,15 +85,15 @@ public class Rectangle extends Figure {
 	 */
 	public void afficher() {
 		super.afficherFigure();
-		System.out.println("Rectangle (longueur = "
-				+ Longueur + ", largeur = " + Largeur + ", position = " + HautGauche + ")");
+		System.out.println("Rectangle (position = " + HautGauche + ")" 
+				+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" );
 	}
 
 	/**
 	 * Obtenir la position du coin en haut a gauche.
 	 * @return position du coin en haut a gauche.
 	 */
-	public Point getTopLeft() {
+	public Point getHautGauche() {
 		return HautGauche.clone();
 	}
 	
@@ -110,6 +110,14 @@ public class Rectangle extends Figure {
 	        }
 	    }
 	
+	 /**
+		 * Routourner  le Rectangle sous forme d'une chaine de caracteres
+		 */
+	 @Override
+		public String toString() {
+			return "Rectangle (position = " + HautGauche + ")" 
+					+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" ;
+		}
 
 
 }
