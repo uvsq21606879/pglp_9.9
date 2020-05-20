@@ -38,10 +38,10 @@ public abstract class BDD {
     }
     
     /**
-     * créer la base de donnée.
-     * @throws Exception erreur de création
+     * Creation des tables dans la BDD.
+     * @throws Exception en cas  d'erreur de creation
      */
-    public static void resetDataBase() throws Exception {
+    public static void resetBddTables() throws Exception {
         Connection connection = BDD.Connect();
         BDD.SupprimerTables(connection);
         BDD.CreateTableFigure(connection);
@@ -114,11 +114,11 @@ public abstract class BDD {
      */
     private static void CreateTableCarre(Connection connection)
             throws SQLException {
-        String T = "create table Carre ("
+        String T = "CREATE table Carre ("
                 + "figure varchar(20) primary key,"
                 + "HG_x int, HG_y int,"
                 + "longueur int,"
-                + "foreign key (figure) references Figure (Figure))";
+                + "foreign key (figure) references Figure (figure))";
         Statement stat = connection.createStatement();
         stat.execute(T);
     }
@@ -205,8 +205,6 @@ public abstract class BDD {
         Statement stat = connection.createStatement();
         stat.execute(table);
     }
-
-    
-    
+ 
 	
 }

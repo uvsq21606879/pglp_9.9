@@ -48,7 +48,7 @@ public abstract class DAO<T> {
 	 * Trouver un element par son identifiant.
 	 * @return T element cherche
 	 */
-	public abstract T Chearch(String nom) throws FileNotFoundException,
+	public abstract T Search(String nom) throws FileNotFoundException,
 	ClassNotFoundException, IOException, SQLException;
 	/**
 	 * Methode pour recuperer la connection.
@@ -68,5 +68,24 @@ public abstract class DAO<T> {
 	 */
 	public void setConnection(final Connection newConnection) {
 		this.connection = newConnection;
+	}
+	
+	/**
+	 * Pour eviter les Chiffres magiques dans le code
+	 */
+	public enum Arg{
+		UN(1),
+		DEUX(2),
+		TROIS(3),
+		QUATRE(4);
+		
+		private int num;
+		
+		 Arg(int n){
+			    this.num = n;
+			  }
+		 public int get(){
+			 return num;
+		 }
 	}
 }

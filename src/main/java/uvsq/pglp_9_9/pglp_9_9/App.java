@@ -1,5 +1,7 @@
 package uvsq.pglp_9_9.pglp_9_9;
 
+import uvsq.pglp_9_9.pglp_9_9.DAO.Arg;
+
 /**
  * Hello world!
  *
@@ -21,6 +23,8 @@ public class App
         
         Rectangle R = new Rectangle("R", new Point(4,5), 5, 7);
 		R.afficher();
+		
+		System.out.println(Arg.UN.get());
         
     }
 }
