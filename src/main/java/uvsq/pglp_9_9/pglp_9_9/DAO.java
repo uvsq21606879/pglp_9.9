@@ -74,10 +74,15 @@ public abstract class DAO<T> {
 	 * Pour eviter les Chiffres magiques dans le code
 	 */
 	public enum Arg{
+		ZERO(1),
 		UN(1),
 		DEUX(2),
 		TROIS(3),
-		QUATRE(4);
+		QUATRE(4),
+		CINQ(5),
+		SIX(6),
+		SEPT(7);
+		
 		
 		private int num;
 		

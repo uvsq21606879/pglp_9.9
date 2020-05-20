@@ -8,11 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
-public class DaoCarre extends DAO<Carre> {
-
-
+public class DaoCercle extends DAO<Cercle> {
 	/**
 	 * La connexion a la BDD.
 	 */
@@ -21,51 +17,51 @@ public class DaoCarre extends DAO<Carre> {
 	 * Constructeur de la classe.
 	 * @param Connect connection a la BDD
 	 */
-	public DaoCarre(Connection Connect) throws SQLException {
+	public DaoCercle(Connection Connect) throws SQLException {
 		this.connection=Connect;
 		// TODO Auto-generated constructor stub
 	}
 	
 
 	/**
-	 * Methode pour ajouter un Carre au DAO.
-	 * @param objet le Carre a ajouter
+	 * Methode pour ajouter un cercle au DAO.
+	 * @param objet le cercle a ajouter
 	 * @return la creation
 	 */
 
 	@Override
-	public Carre create(Carre carre) throws IOException, SQLException {
+	public Cercle create(Cercle cercle) throws IOException, SQLException {
 		
 		try {
 			PreparedStatement prepare = connection.prepareStatement(
 					"INSERT INTO Figure (figure) VALUES(?)");
-			prepare.setString(1, carre.getFigure());
+			prepare.setString(1, cercle.getFigure());
 			prepare.executeUpdate();
 			prepare = connection.prepareStatement(
-					"INSERT INTO Carre (figure,HG_x,HG_y,longueur)"
+					"INSERT INTO Cercle (figure,centre_x,centre_y,rayon)"
 							+ " VALUES(?, ?, ?, ?)");
-			prepare.setString(Arg.UN.get(), carre.getFigure());
-			prepare.setInt(Arg.DEUX.get(), carre.getHautGauche().getX());
-			prepare.setInt(Arg.TROIS.get(), carre.getHautGauche().getY());
-			prepare.setInt(Arg.QUATRE.get(), carre.getLongueur());
+			prepare.setString(Arg.UN.get(), cercle.getFigure());
+			prepare.setInt(Arg.DEUX.get(), cercle.getCentre().getX());
+			prepare.setInt(Arg.TROIS.get(), cercle.getCentre().getY());
+			prepare.setInt(Arg.QUATRE.get(), cercle.getRayon());
 			prepare.executeUpdate();
 		} catch (SQLException e) {
 			return null;
 		}
-		return carre;
+		return cercle;
 	}
 	/**
-	 * Supprimer un carre du DAO
-	 * @param carre a supprimer
+	 * Supprimer un cercle du DAO
+	 * @param cercle a supprimer
 	 */
 
 	@Override
-	public void Suprimer(Carre carre) throws SQLException {
+	public void Suprimer(Cercle cercle) throws SQLException {
 
 		try {
 			PreparedStatement prepare = connection.prepareStatement(
 					"DELETE FROM RelationComposition WHERE IdComposant = ?");
-			prepare.setString(Arg.UN.get(), carre.getFigure());
+			prepare.setString(Arg.UN.get(), cercle.getFigure());
 			prepare.executeUpdate();
 		} catch (SQLException e) {
 
@@ -74,67 +70,67 @@ public class DaoCarre extends DAO<Carre> {
 		try {
 
 			PreparedStatement prepare = connection.prepareStatement(
-					"DELETE FROM Carre WHERE figure = ?");
-			prepare.setString(Arg.UN.get(), carre.getFigure());
+					"DELETE FROM Cercle WHERE figure = ?");
+			prepare.setString(Arg.UN.get(), cercle.getFigure());
 			prepare.executeUpdate();
 			prepare = connection.prepareStatement(
 					"DELETE FROM Figure WHERE figure = ?");
-			prepare.setString(Arg.UN.get(), carre.getFigure());
+			prepare.setString(Arg.UN.get(), cercle.getFigure());
 			prepare.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	/**
-	 * Mettre a jour un carre dans le DAO 
+	 * Mettre a jour un cercle dans le DAO 
 	 */
 	@Override
-	public Carre MiseAjour(Carre carre) throws FileNotFoundException, IOException, SQLException {
+	public Cercle MiseAjour(Cercle cercle) throws FileNotFoundException, IOException, SQLException {
 
-		Carre CarreAmodifier = null;
+		Cercle cercleAmodifier = null;
 		try {
-			CarreAmodifier = this.Search(carre.getFigure());
+			cercleAmodifier = this.Search(cercle.getFigure());
 		} catch (ClassNotFoundException e1) {
 
 			e1.printStackTrace();
 		}
-		if (CarreAmodifier != null) {
+		if (cercleAmodifier != null) {
 			try {
 				PreparedStatement prepare = connection.prepareStatement(
-						"UPDATE Carre SET HG_x = ?, HG_y = ?, longueur = ? WHERE figure = ?");
-				prepare.setInt(Arg.UN.get(), carre.getHautGauche().getX());
-				prepare.setInt(Arg.DEUX.get(), carre.getHautGauche().getY());
-				prepare.setInt(Arg.TROIS.get(), carre.getLongueur());
-				prepare.setString(Arg.QUATRE.get(), carre.getFigure());
+						"UPDATE Cercle SET centre_x = ?, centre_y = ?, rayon = ? WHERE figure = ?");
+				prepare.setInt(Arg.UN.get(), cercle.getCentre().getX());
+				prepare.setInt(Arg.DEUX.get(), cercle.getCentre().getY());
+				prepare.setInt(Arg.TROIS.get(), cercle.getRayon());
+				prepare.setString(Arg.QUATRE.get(), cercle.getFigure());
 				prepare.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return CarreAmodifier;
+				return cercleAmodifier;
 			}
 		} else {
 			return null;
 		}
-		return carre;
+		return cercle;
 	}
 
 	/**
-	 * Chercher  un carre dans le DAO et le retourner.
-	 * @param carre element a obrenit.
-	 * @return le carre si il est  touve sinon null.
+	 * Chercher  un cercle dans le DAO et le retourner.
+	 * @param cercle element a obrenit.
+	 * @return le cercle si il est  touve sinon null.
 	 */
 	@Override
-	public Carre Search(String carre) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
+	public Cercle Search(String cercle) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		
-		Carre carreSearch = null;
+		Cercle cercleSearch = null;
 		try {
 			PreparedStatement req = connection.prepareStatement(
-					"SELECT * FROM Carre WHERE figure = ?");
-			req.setString(Arg.UN.get(), carre);
+					"SELECT * FROM Cercle WHERE figure = ?");
+			req.setString(Arg.UN.get(), cercle);
 			ResultSet res = req.executeQuery();
 			if (((java.sql.ResultSet) res).next()) {
-				Point point = new Point(res.getInt("HG_x"), res.getInt("HG_y"));
+				Point point = new Point(res.getInt("centre_x"), res.getInt("centre_x"));
 				try {
-					carreSearch = new Carre(carre, point, res.getInt("longueur"));
+					cercleSearch = new Cercle(cercle, point, res.getInt("rayon"));
 				} catch (Exception e) {
 					e.printStackTrace();
 					return null;
@@ -144,20 +140,20 @@ public class DaoCarre extends DAO<Carre> {
 			e.printStackTrace();
 			return null;
 		}
-		return carreSearch;
+		return cercleSearch;
 
 	}
 	
 	/**
-	 * Retourne tout les carre du DAO
+	 * Retourne tout les cercle du DAO
 	 */
 	@Override
-	public ArrayList<Carre> getAll() {
+	public ArrayList<Cercle> getAll() {
 		// TODO Auto-generated method stub
-		  ArrayList<Carre> res = new ArrayList<Carre>();
+		  ArrayList<Cercle> res = new ArrayList<Cercle>();
 	        try {
 	            PreparedStatement prepare = connection.prepareStatement(
-	                    "SELECT figure FROM Carre");
+	                    "SELECT figure FROM Cercle");
 	            ResultSet result = prepare.executeQuery();
 	            while (result.next()) {
 	                try {
@@ -172,11 +168,10 @@ public class DaoCarre extends DAO<Carre> {
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	            return new ArrayList<Carre>();
+	            return new ArrayList<Cercle>();
 	        }
 	        return res;
 	}
-
 
 
 }

@@ -25,7 +25,7 @@ public class CarreTest {
 	public void testMove() throws Exception {
 		Carre C = new Carre("C", new Point(1,1), 10);
 		C.move(1, 2);
-		assertTrue(C.getHautGauche().toString().equals("(2,3)"));
+		assertTrue(C.getHautGauche().toString().equals("(2,3)")); 
 	}
 	@Test
 	public void testAffichage() throws Exception {
