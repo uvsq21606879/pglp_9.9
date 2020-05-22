@@ -2,60 +2,51 @@ package uvsq.pglp_9_9.pglp_9_9;
 
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
 
 import org.junit.Test;
 
 public class GroupeFiguresTest {
 
 	 @Test
-	    public void testConstructor() {
-	        GroupeFigures g = new GroupeFigures("g");
-	        assertTrue(g.getListe().isEmpty() && g.getFigure().equals("g"));
+	    public void testConstructeur() {
+	        GroupeFigures Grp = new GroupeFigures("Grp");
+	        assertTrue(Grp.getListe().isEmpty() && Grp.getFigure().equals("Grp"));
 	    }
 	    @Test
 	    public void testAjouter() throws Exception {
-	        GroupeFigures g = new GroupeFigures("g");
-	        Cercle c = new Cercle("c", new Point(1,1),10);
-	        g.Ajouter(c);
-	        g.Ajouter(c);
-	        g.Ajouter(g);
-	        assertTrue(g.getListe().size() == 1 && g.getListe().get(0) == c);
+	        GroupeFigures Grp = new GroupeFigures("Grp");
+	        Cercle C = new Cercle("C", new Point(5,4),10);
+	        Grp.Ajouter(C);
+	        Grp.Ajouter(C);
+	        assertTrue(Grp.getListe().size() == 1 && Grp.getListe().get(0) == C);
 	    }
 	    @Test
-	    public void testDelete() throws Exception {
-	        GroupeFigures g = new GroupeFigures("g");
-	        Cercle c = new Cercle("c", new Point(1,1),10);
-	        g.Ajouter(c);
-	        g.Suprimer(c);
-	        assertTrue(g.getListe().isEmpty());
+	    public void testSuprimer() throws Exception {
+	        GroupeFigures Grp = new GroupeFigures("Grp");
+	        Cercle c = new Cercle("C", new Point(1,1),10);
+	        Grp.Ajouter(c);
+	        Grp.Suprimer(c);
+	        assertTrue(Grp.getListe().isEmpty());
+	    }
+	   
+	    @Test
+	    public void testAfficher() throws Exception {
+	        GroupeFigures Grp = new GroupeFigures("Grp");
+	        Cercle C1 = new Cercle("C1", new Point(1,1),10);
+	        Cercle C2 = new Cercle("C2", new Point(2,2),10);
+	        Cercle C3 = new Cercle("C3", new Point(3,3),10);
+	        Grp.Ajouter(C1);
+	        Grp.Ajouter(C2);
+	        Grp.Ajouter(C3);
+	        Grp.afficher();
 	    }
 	    @Test
-	    public void testIterate() throws Exception {
-	        GroupeFigures g = new GroupeFigures("g");
-	        Cercle c = new Cercle("c", new Point(1,1),10);
-	        g.Ajouter(c);
-	        Iterator<Figure> itf = g.iterator();
-	        assertTrue(itf.hasNext() && itf.next() == c && itf.hasNext() == false);
-	    }
-	    @Test
-	    public void testAffiche() throws Exception {
-	        GroupeFigures g = new GroupeFigures("g");
-	        Cercle c = new Cercle("c", new Point(1,1),10);
-	        Cercle c2 = new Cercle("c2", new Point(1,1),10);
-	        Cercle c3 = new Cercle("c3", new Point(1,1),10);
-	        g.Ajouter(c);
-	        g.Ajouter(c2);
-	        g.Ajouter(c3);
-	        g.afficher();
-	    }
-	    @Test
-	    public void testDeplace() throws Exception {
-	        GroupeFigures g = new GroupeFigures("g");
-	        Cercle c = new Cercle("c", new Point(1,1),10);
-	        g.Ajouter(c);
-	        g.move(123,121);
-	        assertTrue(c.getCentre().toString().equals("(124,122)"));
+	    public void testMove() throws Exception {
+	        GroupeFigures Grp = new GroupeFigures("Grp");
+	        Cercle C = new Cercle("C", new Point(5,5),10);
+	        Grp.Ajouter(C);
+	        Grp.move(10,10);
+	        assertTrue(C.getCentre().toString().equals("(15,15)"));
 	    }
 
 }
