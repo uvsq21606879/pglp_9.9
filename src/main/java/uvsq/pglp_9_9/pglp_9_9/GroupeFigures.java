@@ -14,10 +14,9 @@ public class GroupeFigures extends Figure implements Iterable<Figure> {
 	 * Constructeur de la classe
 	 * @param newFigure
 	 */
-	protected GroupeFigures(String newFigure) {
+	public GroupeFigures(String newFigure) {
 		super(newFigure);
 		figures= new ArrayList<Figure>();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -42,11 +41,13 @@ public class GroupeFigures extends Figure implements Iterable<Figure> {
 	/**
 	 * afficher les formes de ce groupe.
 	 */
-	public void affiche() {
-		super.afficherFigure();
+	@Override
+	public void afficher() {
+		super.afficher();
 		System.out.println("Groupe (");
-		for (Figure f : figures)
-			f.afficherFigure();
+		for (Figure f : figures) {
+			f.afficher();
+			}
 		System.out.println(")");
 	}
 

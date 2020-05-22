@@ -12,18 +12,18 @@ public abstract class DAO<T> {
 	/**
 	 * Etablir une connection avec le JDBC.
 	 */
-	private Connection connection;
+	//private Connection connection;
 
 	/**
 	 * Constructeur du DAO pour JDBC.
 	 * @throws SQLException Exception liee a l'acces a la base de donnees
 	 */
 	public DAO() throws SQLException {
-		try {
+		/*try {
 			setConnection(DriverManager.getConnection("jdbc:derby:BDD;create=true"));
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	/**
 	 * Creation d'un objet.
@@ -54,9 +54,9 @@ public abstract class DAO<T> {
 	 * Methode pour recuperer la connection.
 	 * @return connection.
 	 */
-	public Connection getConnection() {
+	/*public Connection getConnection() {
 		return connection;
-	}
+	}*/
 	/**
 	 * obtenir tous les elements du DAO.
 	 * @return les elements du DAO
@@ -66,15 +66,15 @@ public abstract class DAO<T> {
 	 * Pour redefinir la connection.
 	 * @param newCon a remplacer
 	 */
-	public void setConnection(final Connection newConnection) {
+	/*public void setConnection(final Connection newConnection) {
 		this.connection = newConnection;
-	}
+	}*/
 	
 	/**
 	 * Pour eviter les Chiffres magiques dans le code
 	 */
 	public enum Arg{
-		ZERO(1),
+		ZERO(0),
 		UN(1),
 		DEUX(2),
 		TROIS(3),

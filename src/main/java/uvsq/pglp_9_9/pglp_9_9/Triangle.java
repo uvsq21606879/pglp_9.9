@@ -34,8 +34,9 @@ public class Triangle extends Figure {
 	    /**
 	     * Affiche les informations du triangle.
 	     */
+		@Override
 	    public void afficher() {
-	    	 super.afficherFigure();
+	    	 super.afficher();
 	        String s = " Triangle (" + this.Point1 + ", " + this.Point2
 	                + ", " + this.Point3 + ").\n";
 	        System.out.println(s);

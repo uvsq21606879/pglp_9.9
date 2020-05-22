@@ -94,8 +94,9 @@ public class Cercle extends Figure {
     /**
      * Affiche les informations du cercle.
      */
+    @Override
     public void afficher() {
-    	 super.afficherFigure();
+    	 super.afficher();
          System.out.println("Cercle ("
                  + "centre = " + Centre + ", rayon = " + Rayon + ")");
 

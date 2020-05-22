@@ -13,6 +13,7 @@ public abstract class BDD {
      * Creation de la BDD.
      * @throws SQLException en cas d'erreur de creation
      */
+	
     public static void Bdd()  {
         Connection connection;
         try {
@@ -48,9 +49,9 @@ public abstract class BDD {
         BDD.CreateTableTriangle(connection);
         BDD.CreateTableCarre(connection);
         BDD.CreateTableRectangle(connection);
-        BDD.CreateTableCercle(connection);
-        BDD.CreateTableGroupeFigures(connection);
-        BDD.CreateTableRelation(connection);
+        CreateTableCercle(connection);
+        CreateTableGroupeFigures(connection);
+        CreateTableRelation(connection);
         connection.close();
     }
     
@@ -66,7 +67,7 @@ public abstract class BDD {
             e.printStackTrace();
         }
         try {
-            statement.execute("drop table Composition");
+            statement.execute("drop table RelationComposition");
         } catch (SQLException e) {
         }
         try {

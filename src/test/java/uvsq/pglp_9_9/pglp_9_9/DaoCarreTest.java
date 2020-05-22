@@ -2,7 +2,9 @@ package uvsq.pglp_9_9.pglp_9_9;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
+
 
 import org.junit.Test;
 
@@ -12,6 +14,8 @@ public class DaoCarreTest {
 
 	@Test
 	public void DaoConnxionToBDD() throws Exception {
+		BDD.Bdd();
+		BDD.resetBddTables();
 		DaoCarre C= new DaoCarre(BDD.Connect());
 		assertNotNull(C);
 		
@@ -20,20 +24,20 @@ public class DaoCarreTest {
 	@Test
 	public void DaoCarreCreateSearchTest() throws Exception {
 		DaoCarre C= new DaoCarre(BDD.Connect());
-		Carre carre1 = new Carre("carre1", new Point(1,1), 10);
-		C.create(carre1);
-		Carre R = C.Search(carre1.getFigure());
+		Carre C1 = new Carre("C1", new Point(1,1), 10);
+		C.create(C1);
+		Carre R = C.Search(C1.getFigure());
 		assertNotNull(R);    
 	}
 	
 	@Test
 	public void DaoCarreMiseAjourTest() throws Exception {
 		DaoCarre C= new DaoCarre(BDD.Connect());
-		Carre carre2 = new Carre("carre2", new Point(1,1), 10);
-		C.create(carre2);
-		carre2.move(1, 2);	
-		carre2=C.MiseAjour(carre2);
-		assertTrue(carre2.getHautGauche().toString().equals("(2,3)"));
+		Carre C2 = new Carre("C2", new Point(1,1), 10);
+		C.create(C2);
+		C2.move(1, 2);	
+		C2=C.MiseAjour(C2);
+		assertTrue(C2.getHautGauche().toString().equals("(2,3)"));
     
 	}
 	
@@ -50,17 +54,17 @@ public class DaoCarreTest {
 	@Test
 	public void DaoCarreGetAllTest() throws Exception {
 		DaoCarre C = new DaoCarre(BDD.Connect());
-		Carre carre3 = new Carre("carre3", new Point(2,1), 20);
-		Carre carre4 = new Carre("carre4", new Point(2,1), 20);
-		Carre carre5 = new Carre("carre5", new Point(3,1), 15);
-		C.create(carre3);
-		C.create(carre4);
-		C.create(carre5);
+		Carre C3 = new Carre("C3", new Point(2,1), 20);
+		Carre C4 = new Carre("C4", new Point(2,1), 20);
+		Carre C5 = new Carre("C5", new Point(3,1), 15);
+		C.create(C3);
+		C.create(C4);
+		C.create(C5);
 	    ArrayList<Carre> liste = new ArrayList<>();
 	    liste = C.getAll();
 	    assertNotNull(liste);
-	    assertEquals(liste.size(),Arg.CINQ.get());
+	    assertEquals(Arg.CINQ.get(),liste.size());
 	    
 	}
-
+	
 }

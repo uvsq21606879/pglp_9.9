@@ -16,7 +16,7 @@ public class Rectangle extends Figure {
 	private int Largeur;
 
 
-	protected Rectangle(final String nomRectangle, Point HG, int longueur,int largeur) throws Exception {
+	public Rectangle(final String nomRectangle, Point HG, int longueur,int largeur) throws Exception {
 		super(nomRectangle);
 		// TODO Auto-generated constructor stub
 		this.HautGauche = HG.clone();
@@ -83,8 +83,9 @@ public class Rectangle extends Figure {
 	/**
 	 * Afficher le Rectangle
 	 */
+	@Override
 	public void afficher() {
-		super.afficherFigure();
+		super.afficher();
 		System.out.println("Rectangle (position = " + HautGauche + ")" 
 				+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" );
 	}

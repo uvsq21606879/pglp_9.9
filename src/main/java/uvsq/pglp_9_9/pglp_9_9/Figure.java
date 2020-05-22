@@ -13,14 +13,14 @@ public abstract class Figure {
 	 * @return le nom de la Figure.
 	 */
 	public String getFigure() {
-		return this.Figure;
+		return Figure+ "";
 	}
 	/**
 	 * Set le nom de la Figure.
 	 * @param nouveau nom
 	 */
 	public void setFigure(String newFigure) {
-		this.Figure = newFigure;
+		Figure = newFigure +"";
 	}
 	/**
 	 * constructeur pour le Figure.
@@ -38,7 +38,7 @@ public abstract class Figure {
 	/**
 	 * affiche la Figure.
 	 */
-	public void afficherFigure() {
+	public void afficher() {
 		System.out.print(Figure + " : ");
 	}
 	

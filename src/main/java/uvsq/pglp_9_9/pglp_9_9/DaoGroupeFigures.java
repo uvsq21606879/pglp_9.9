@@ -35,13 +35,15 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
 	public void createRelationC(String IdGroupe, String IdComposant) throws IOException, SQLException {
 
 		try {
+			
 			PreparedStatement prepare = connection.prepareStatement(
-					"INSERT INTO RelationComposition (IdGroupe, IdComposant VALUES(?, ?)");
+					"INSERT INTO RelationComposition (IdGroupe, IdComposant) VALUES(?, ?)");
 			prepare.setString(Arg.UN.get(), IdGroupe);
 			prepare.setString(Arg.DEUX.get(),  IdComposant);
 			prepare.executeUpdate();
+			
 		} catch (SQLException e) {
-
+			System.err.println("Echeque lors de la creation de la Relation de Composition");
 		}
 	}
 	/**
@@ -51,42 +53,45 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
-	public ArrayList<Figure> SearchComposition(String IdGroupe) throws FileNotFoundException, ClassNotFoundException, IOException {
-		ArrayList<Figure> Search = new ArrayList<Figure>();
-		DaoConstruction construction = new DaoConstruction();
-		try {
-			PreparedStatement prepare = connection.prepareStatement(
-					"SELECT IdComposant FROM RelationComposition WHERE IdGroupe = ?");
-			prepare.setString(Arg.UN.get(), IdGroupe);
-			ResultSet result = prepare.executeQuery();
-			DAO<Rectangle> daoRectangle = construction.getDaoRectangle();
-			DAO<Triangle> daoTriangle = construction.getDaoTriangle();
-			DAO<Cercle> daoCercle = construction.getDaoCercle();
-			DAO<Carre> daoCarre = construction.getDaoCarre();
-
-			while (result.next()) {
-				Figure figure = daoCercle.Search(result.getString("IdComposant"));
-				if (figure == null) 
-					figure = daoRectangle.Search(result.getString("IdComposant"));
-				if (figure == null) 
-					figure = daoTriangle.Search(result.getString("IdComposant"));
-				if (figure == null) 
-					figure = daoCarre.Search(result.getString("IdComposant"));
-				if (figure == null)
-					figure = this.Search(result.getString("IdComposant"));
-				Search.add(figure);
-			}
-			construction.close();
-		} catch (SQLException e) {
-			construction.close();
-			return new ArrayList<Figure>();
-		}
-		return Search;
+	public ArrayList<Figure> SearchComposition(String grp) throws FileNotFoundException, ClassNotFoundException, IOException {
+	        ArrayList<Figure> search = new ArrayList<Figure>();
+	        DaoConstruction construction = new DaoConstruction();
+	        try {
+	            PreparedStatement prepare = connection.prepareStatement(
+	                    "SELECT IdComposant FROM RelationComposition WHERE IdGroupe = ?");
+	            prepare.setString(Arg.UN.get(), grp);
+	            ResultSet result = prepare.executeQuery();
+	            DAO<Cercle> daoCercle = construction.getDaoCercle();
+	            DAO<Carre> daoCarre = construction.getDaoCarre();
+	            DAO<Rectangle> daoRectangle = construction.getDaoRectangle();
+	            DAO<Triangle> daoTriangle = construction.getDaoTriangle();
+	            while (result.next()) {
+	                Figure fig = daoCercle.Search(result.getString("IdComposant"));
+	                if (fig == null) {
+	                    fig = daoCarre.Search(result.getString("IdComposant"));
+	                }
+	                if (fig == null) {
+	                    fig = daoRectangle.Search(result.getString("IdComposant"));
+	                }
+	                if (fig == null) {
+	                    fig = daoTriangle.Search(result.getString("IdComposant"));
+	                }
+	                if (fig == null) {
+	                    fig = this.Search(result.getString("IdComposant"));
+	                }
+	                search.add(fig);
+	            }
+	            construction.close();
+	        } catch (SQLException e) {
+	        	construction.close();
+	            return new ArrayList<Figure>();
+	        }
+	        return search;
 	}
 	
 	
 	/**
-	 * Suprimer une fugure
+	 * Suprimer une figure
 	 * @param la figure a supprimer
 	 */
 	@Override
@@ -178,39 +183,39 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
 	@Override
 	public GroupeFigures Search(String figure)
 			throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
-	        GroupeFigures groupeSearch = null;
+	        GroupeFigures search = null;
 	        try {
 	            PreparedStatement prepare = connection.prepareStatement(
 	                    "SELECT * FROM GroupeFigures WHERE figure = ?");
 	            prepare.setString(Arg.UN.get(), figure);
 	            ResultSet result = prepare.executeQuery();
 	            if (result.next()) {
-	                groupeSearch = new GroupeFigures(figure);
-	                ArrayList<Figure> liste = SearchComposition(figure);
-	                for (Figure F : liste) {
-	                    groupeSearch.Ajouter(F);
+	                search = new GroupeFigures(figure);
+	                ArrayList<Figure> list = SearchComposition(figure);
+	                for (Figure f : list) {
+	                    search.Ajouter(f);
 	                }
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	            return null;
 	        }
-	        return groupeSearch;
+	        return search;
 	}
  /**
   * Retourner la liste de tout les figures dans GroupeFigures
   */
 	@Override
 	public ArrayList<GroupeFigures> getAll() {
-		 ArrayList<GroupeFigures> search = new ArrayList<GroupeFigures>();
+		 ArrayList<GroupeFigures> res = new ArrayList<GroupeFigures>();
 	        try {
 	            PreparedStatement prepare = connection.prepareStatement(
 	                    "SELECT figure FROM GroupeFigures");
 	            ResultSet result = prepare.executeQuery();
 	            while (result.next()) {
 	                try {
-						search.add(this.Search(result.getString("figure")));
-					} catch (ClassNotFoundException | IOException e) {
+						res.add(this.Search(result.getString("figure")));
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 	            }
@@ -218,7 +223,7 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
 	            e.printStackTrace();
 	            return new ArrayList<GroupeFigures>();
 	        }
-	        return search;
+	        return res;
 	}
 
 	@Override
@@ -229,8 +234,7 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
                     "INSERT INTO Figure (figure) VALUES(?)");
             prepare.setString(Arg.UN.get(), object.getFigure());
             prepare.executeUpdate();
-            prepare = connection.prepareStatement(
-                    "INSERT INTO GroupeFigures (figure) VALUES(?)");
+            prepare = connection.prepareStatement("INSERT INTO GroupeFigures (figure) VALUES(?)");
             prepare.setString(Arg.UN.get(), object.getFigure());
             prepare.executeUpdate();
             for (Figure f : object.getListe()) {
@@ -249,7 +253,9 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
                 } else {
                     this.create((GroupeFigures) f);
                 }
-                this.createRelationC(object.getFigure(), f.getFigure());
+               
+                createRelationC(object.getFigure(), f.getFigure());
+                
             }
             construction.close();
         } catch (SQLException e) {

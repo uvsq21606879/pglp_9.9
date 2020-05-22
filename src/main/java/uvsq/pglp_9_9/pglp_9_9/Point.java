@@ -1,5 +1,7 @@
 package uvsq.pglp_9_9.pglp_9_9;
 
+import java.io.CharConversionException;
+
 public class Point {
 	
 	 /**
@@ -60,15 +62,17 @@ public class Point {
   
     /**
      * Comparer un point.
-     */
+     
     @Override
     public boolean equals(Object obj) {
-        if (this.equals(obj)) {
+    	
+    	if (this.equals(obj)) {
             return true;
         }
-        if (obj == null) {
+    	if (obj == null) {
             return false;
         }
+    	
         if (getClass() != obj.getClass()) {
             return false;
         }
@@ -80,7 +84,7 @@ public class Point {
             return false;
         }
         return true;
-    }
+    }*/
     @Override
     public String toString() {
     	String p = "(" + x + "," + y + ")";
@@ -90,5 +94,30 @@ public class Point {
     @Override
     public Point clone() {
         return new Point(x, y);
+    }
+    /**
+     * constructeur du point avec un type String.
+     * @param position string contenant la position.
+     * @throws CharConversionException invalid String
+     */
+    public Point(String position) throws CharConversionException {
+        position.replace(" ", "");
+        if (position.charAt(0) != '(' || position.charAt(position.length() - 1) != ')') {
+            System.err.println(position);
+            throw new CharConversionException();
+        }
+        String position2 = position.substring(1, position.length() - 1);
+        String[] positionSplit = position2.split(",");
+        if (positionSplit.length != 2) {
+            System.err.println(position);
+            throw new CharConversionException();
+        }
+        try {
+            x = Integer.parseInt(positionSplit[0]);
+            y = Integer.parseInt(positionSplit[1]);
+        } catch (NumberFormatException e) {
+            System.err.println("Caractère inconnu lors de la conversion des nombres.");
+            throw e;
+        }
     }
 }
