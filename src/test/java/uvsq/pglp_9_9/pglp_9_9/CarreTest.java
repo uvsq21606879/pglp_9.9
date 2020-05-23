@@ -10,7 +10,7 @@ public class CarreTest {
 	@Test
 	public void testConstructeur() throws Exception {
 		Carre C1 = new Carre("C1", new Point(4,2), 10);
-		assertEquals(C1.toString(), "Carre (longueur = 10, Point haut à gauche = (4,2))");
+		assertEquals(C1.toString(), "Carre (Point haut à gauche = (4,2), longueur = 10)");
 		
 	}
 	@Test 

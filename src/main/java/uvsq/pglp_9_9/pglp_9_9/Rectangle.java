@@ -69,8 +69,8 @@ public class Rectangle extends Figure {
 	@Override
 	public void afficher() {
 		super.afficher();
-		System.out.println("Rectangle (Point haut à gauche = " + HautGauche + ")" 
-				+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" );
+		System.out.println("Rectangle (Point haut à gauche = " + HautGauche + ", " 
+				+ "longueur = " + Longueur + ", largeur = " + Largeur + "))" );
 	}
 
 	/**
@@ -99,8 +99,8 @@ public class Rectangle extends Figure {
 	 */
 	@Override
 	public String toString() {
-		return "Rectangle (Point haut à gauche = " + HautGauche + ")" 
-				+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" ;
+		return "Rectangle (Point haut à gauche = " + HautGauche + ", " 
+				+ "longueur = " + Longueur + ", largeur = " + Largeur + "))" ;
 	}
 
 	@Override

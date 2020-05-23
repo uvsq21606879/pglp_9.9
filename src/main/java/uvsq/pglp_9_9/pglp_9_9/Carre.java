@@ -31,7 +31,7 @@ public class Carre extends Figure {
 	@Override
     public void afficher() {
         super.afficher();
-        System.out.println("Carre (longueur = " + Longueur + ", Point haut à gauche = " + HautGauche + ")");
+        System.out.println("Carre (Point haut à gauche = " + HautGauche +  ", longueur = " + Longueur +")");
     }
     
     /**
@@ -62,7 +62,7 @@ public class Carre extends Figure {
     }
 	@Override
     public String toString() {
-		return "Carre (longueur = " + Longueur + ", Point haut à gauche = " + HautGauche + ")";
+		return "Carre (Point haut à gauche = " + HautGauche +  ", longueur = " + Longueur +")";
     		
     }
 

@@ -156,18 +156,18 @@ public class DaoGroupeFigures extends DAO<GroupeFigures> {
 			for (Figure f : objet.getListe()) {
 				if (f.getClass() == Cercle.class) {
 					DAO<Cercle> dao = construction.getDaoCercle();
-					dao.create((Cercle) f);
+					dao.MiseAjour((Cercle) f);
 				} else if (f.getClass() == Carre.class) {
 					DAO<Carre> dao = construction.getDaoCarre();
-					dao.create((Carre) f);
+					dao.MiseAjour((Carre) f);
 				} else if (f.getClass() == Rectangle.class) {
 					DAO<Rectangle> dao = construction.getDaoRectangle();
-					dao.create((Rectangle) f);
+					dao.MiseAjour((Rectangle) f);
 				} else if (f.getClass() == Triangle.class) {
 					DAO<Triangle> dao = construction.getDaoTriangle();
-					dao.create((Triangle) f);
+					dao.MiseAjour((Triangle) f);
 				} else {
-					this.create((GroupeFigures) f);
+					this.MiseAjour((GroupeFigures) f);
 				}
 				this.createRelationC(objet.getFigure(), f.getFigure());
 			}
