@@ -110,6 +110,7 @@ public class DaoCercle extends DAO<Cercle> {
 		} else {
 			return null;
 		}
+		System.out.println("Mise à jour de "+cercle.getFigure()+" avec succès");
 		return cercle;
 	}
 

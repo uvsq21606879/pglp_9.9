@@ -13,7 +13,6 @@ public class Carre extends Figure {
 
 	public Carre(String newFigure, Point HG, int longueur) throws Exception {
 		super(newFigure);
-		// TODO Auto-generated constructor stub
 		this.HautGauche = HG.clone();
         setLongueur(longueur);
 	}
@@ -24,31 +23,7 @@ public class Carre extends Figure {
 		HautGauche.move(x, y);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		 if (this == obj) {
-	            return true;
-	        }
-	        if (obj == null) {
-	            return false;
-	        }
-	        if (getClass() != obj.getClass()) {
-	            return false;
-	        }
-	        Carre C = (Carre) obj;
-	        if (HautGauche == null) {
-	            if (C.HautGauche != null) {
-	                return false;
-	            }
-	        } else if (!HautGauche.equals(C.HautGauche)) {
-	            return false;
-	        }
-	        if (Longueur != C.Longueur) {
-	            return false;
-	        }
-	        return true;
-}
+	
 	
 	 /**
      * afficher un carre.
@@ -56,8 +31,7 @@ public class Carre extends Figure {
 	@Override
     public void afficher() {
         super.afficher();
-        System.out.println("Carre (longueur = "
-                + Longueur + ", position du Point en haut à gauche = " + HautGauche + ")");
+        System.out.println("Carre (longueur = " + Longueur + ", Point haut à gauche = " + HautGauche + ")");
     }
     
     /**
@@ -88,8 +62,14 @@ public class Carre extends Figure {
     }
 	@Override
     public String toString() {
-		return "Carre (longueur = " + Longueur + ", position du Point en haut à gauche = " + HautGauche + ")";
+		return "Carre (longueur = " + Longueur + ", Point haut à gauche = " + HautGauche + ")";
     		
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

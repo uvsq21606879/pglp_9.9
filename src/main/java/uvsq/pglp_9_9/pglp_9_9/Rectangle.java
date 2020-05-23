@@ -3,7 +3,7 @@ package uvsq.pglp_9_9.pglp_9_9;
 public class Rectangle extends Figure {
 
 	/**
-	 * position du coin en haut à gauche du rectangle.
+	 * Position du Point haut à gauche du rectangle.
 	 */
 	private Point HautGauche;
 	/**
@@ -15,45 +15,28 @@ public class Rectangle extends Figure {
 	 */
 	private int Largeur;
 
-
-	public Rectangle(final String nomRectangle, Point HG, int longueur,int largeur) throws Exception {
+	/**
+	 * Constructeur du rectangle
+	 * @param nomRectangle le nom du rectangle
+	 * @param HG le point haut à gauche du rectangle
+	 * @param longueur longueur de rectangle
+	 * @param largeur largeur du rectangle
+	 * @throws Exception
+	 */
+	public Rectangle(String nomRectangle, Point HG, int longueur,int largeur) throws Exception {
 		super(nomRectangle);
-		// TODO Auto-generated constructor stub
 		this.HautGauche = HG.clone();
 		this.setLongueur(longueur);
 		this.setLargeur(largeur);
 	}
-
+	/**
+	 * Deplacement du rectangle
+	 */
 	@Override
 	public void move(int x, int y) {
-		// TODO Auto-generated method stub
 		HautGauche.move(x, y);
-
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Rectangle R = (Rectangle) obj;
-		if (HautGauche == null) {
-			if (R.HautGauche != null) {
-				return false;
-			}
-		} else if (!HautGauche.equals(R.HautGauche) || Longueur != R.Longueur || Largeur != R.Largeur ) {
-			return false;
-		}
-
-		return true;
-	}
 	/**
 	 * Retourner la longueur du rectangle.
 	 * @return la longueur du rectangle
@@ -86,7 +69,7 @@ public class Rectangle extends Figure {
 	@Override
 	public void afficher() {
 		super.afficher();
-		System.out.println("Rectangle (position = " + HautGauche + ")" 
+		System.out.println("Rectangle (Point haut à gauche = " + HautGauche + ")" 
 				+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" );
 	}
 
@@ -97,28 +80,34 @@ public class Rectangle extends Figure {
 	public Point getHautGauche() {
 		return HautGauche.clone();
 	}
-	
+
 	/**
 	 * Changer la largeur du rectangle.
 	 * @param largeur
 	 * @throws Exception
 	 */
-	 public void setLargeur(int largeur) throws Exception {
-	        if (largeur > 0) {
-	            this.Largeur = largeur;
-	        } else {
-	            throw new Exception();
-	        }
-	    }
-	
-	 /**
-		 * Routourner  le Rectangle sous forme d'une chaine de caracteres
-		 */
-	 @Override
-		public String toString() {
-			return "Rectangle (position = " + HautGauche + ")" 
-					+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" ;
+	public void setLargeur(int largeur) throws Exception {
+		if (largeur > 0) {
+			this.Largeur = largeur;
+		} else {
+			throw new Exception();
 		}
+	}
+
+	/**
+	 * Routourner  le Rectangle sous forme d'une chaine de caractères
+	 */
+	@Override
+	public String toString() {
+		return "Rectangle (Point haut à gauche = " + HautGauche + ")" 
+				+ " (longueur = " + Longueur + ", largeur = " + Largeur + ")" ;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 }

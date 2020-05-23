@@ -9,18 +9,31 @@ import java.sql.Statement;
 
 public abstract class BDD {
 	
+	
 	/**
+	 * Nom de la Bdd(dessin)
+	 */
+    private static String Bdd;
+    /**
+     * Connexion à la bdd
+     */
+    private static Connection connection;
+    
+    /**
      * Creation de la BDD.
      * @throws SQLException en cas d'erreur de creation
      */
-	
     public static void Bdd()  {
-        Connection connection;
+        
         try {
-            connection = DriverManager.getConnection("jdbc:derby:BDD;create=true");
+            connection = DriverManager.getConnection("jdbc:derby:"+Bdd+";create=true");
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+        	System.err.println("Impossible de Créer la JDBC ni d'accéder suite à une connexion encore "
+        			+ "ouverte dans le fichier derby.log \n"
+        			+ "du à un arrêt brutal de l'application (sans commande exit)\n");
+        	System.err.println("Veuillez relancer l'application et créer une nouvelle BDD");
+        	System.exit(0);
         }
     }
     
@@ -31,11 +44,34 @@ public abstract class BDD {
     
     public static Connection Connect() {
         try {
-            return DriverManager.getConnection("jdbc:derby:BDD;create=true");
+            return DriverManager.getConnection("jdbc:derby:"+Bdd+";create=false");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+    /**
+     * Fermer la connexion
+     * @throws SQLException 
+     */
+    public static void CloseConnexion() throws SQLException {
+    	connection.close();
+    }
+    /**
+     * Retourner le nom de la BDD qui identifie un dessin
+     * @return nom de la BDD
+     * @throws SQLException
+     */
+    public static String getNomBdd() throws SQLException {
+    	return Bdd;
+    }
+    
+    /**
+     * modifier le nom de la base de donnée.
+     * @param name nouveau nom
+     */
+    public static void setNomBdd(String name) {
+        Bdd = name + "";
     }
     
     /**
@@ -206,6 +242,6 @@ public abstract class BDD {
         Statement stat = connection.createStatement();
         stat.execute(table);
     }
- 
+    
 	
 }

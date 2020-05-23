@@ -114,6 +114,7 @@ public class DaoCarre extends DAO<Carre> {
 		} else {
 			return null;
 		}
+		System.out.println("Mise à jour de "+carre.getFigure()+" avec succès");
 		return carre;
 	}
 

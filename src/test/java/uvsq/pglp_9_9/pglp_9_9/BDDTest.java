@@ -1,10 +1,11 @@
 package uvsq.pglp_9_9.pglp_9_9;
 
 
-public class DaoGroupeFiguresTest {
+
+public class BDDTest {
 
 	/*@Test
-	public void DaoGroupeFigureTest() throws Exception {
+	public void test() throws Exception {
 		BDD.setNomBdd(testBDD);
 		BDD.Bdd();
 		BDD.resetBddTables();
@@ -26,7 +27,8 @@ public class DaoGroupeFiguresTest {
 	    liste=G.getAll();
 	    for(GroupeFigures gf : liste)
 	    gf.afficher();
-	}*/
-	
-
+	    DaoCercle ce = new DaoCercle(BDD.Connect());
+	    assertNotNull(ce);
+	}
+*/
 }

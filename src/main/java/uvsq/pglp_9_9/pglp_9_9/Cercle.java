@@ -24,35 +24,7 @@ public class Cercle extends Figure {
         setRayon(rayon);
     }
    
-    /**
-     * Comparaison.
-     */
-    @Override
-    public boolean equals(final Object obj) {
-    	 Cercle other = (Cercle) obj;
-    	 
-    	if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-       
-        if (Centre == null) {
-            if (other.Centre != null) {
-                return false;
-            }
-        } else if (!Centre.equals(other.Centre)) {
-            return false;
-        }
-        if (Rayon != other.Rayon) {
-            return false;
-        }
-        return true;
-    }
+    
     /**
      * Deplacer le cercle.
      * @param x la valeur de deplacement sur les abscises
@@ -105,6 +77,13 @@ public class Cercle extends Figure {
     public String toString() {
     	return "Cercle (" + "centre = " + Centre + ", rayon = " + Rayon + ")";
     }
+
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 

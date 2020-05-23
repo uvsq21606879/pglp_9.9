@@ -2,34 +2,23 @@ package uvsq.pglp_9_9.pglp_9_9;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public abstract class DAO<T> {
 
 	/**
-	 * Etablir une connection avec le JDBC.
-	 */
-	//private Connection connection;
-
-	/**
 	 * Constructeur du DAO pour JDBC.
 	 * @throws SQLException Exception liee a l'acces a la base de donnees
 	 */
 	public DAO() throws SQLException {
-		/*try {
-			setConnection(DriverManager.getConnection("jdbc:derby:BDD;create=true"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}*/
+		
 	}
 	/**
-	 * Creation d'un objet.
-	 * @param objet L'objet cree
+	 * Création d'un objet.
+	 * @param objet L'objet créer
 	 * @return T une classe 
-	 * @throws SQLException En cas d'ereur d'acces à la BDD
+	 * @throws SQLException En cas d'ereur d'accàs à la BDD
 	 */
 	public abstract T create(T objet) throws IOException, SQLException;
 	/**
@@ -40,7 +29,7 @@ public abstract class DAO<T> {
 	public abstract void Suprimer(T objet) throws SQLException;
 	/**
 	 * Mise a jour.
-	 * @param objet a mettre a jour
+	 * @param objet à mettre à jour
 	 * @return Modification
 	 */
 	public abstract T MiseAjour(T objet) throws IOException, SQLException;

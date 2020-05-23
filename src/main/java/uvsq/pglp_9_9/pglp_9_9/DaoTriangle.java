@@ -106,7 +106,7 @@ public class DaoTriangle extends DAO<Triangle> {
 				PreparedStatement prepare = connection.prepareStatement(
 						  "UPDATE Triangle SET point1_x = ?, point1_y = ?, "
 					      + "point2_x = ?, point2_y = ?, point3_x = ?, point3_y = ?"
-					      + " WHERE variableName = ?");
+					      + " WHERE figure = ?");
 				prepare.setInt(Arg.UN.get(), triangle.getPoint(Arg.ZERO.get()).getX());
 				prepare.setInt(Arg.DEUX.get(), triangle.getPoint(Arg.ZERO.get()).getY());
 				prepare.setInt(Arg.TROIS.get(), triangle.getPoint(Arg.UN.get()).getX());
@@ -122,6 +122,7 @@ public class DaoTriangle extends DAO<Triangle> {
 		} else {
 			return null;
 		}
+		System.out.println("Mise à jour de "+triangle.getFigure()+" avec succès");
 		return triangle;
 	}
 

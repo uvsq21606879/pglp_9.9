@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class DaoRectangle extends DAO<Rectangle> {
-	
+
 	/**
 	 * La connexion a la BDD.
 	 */
@@ -21,9 +21,8 @@ public class DaoRectangle extends DAO<Rectangle> {
 	 */
 	public DaoRectangle(Connection Connect) throws SQLException {
 		this.connection=Connect;
-		// TODO Auto-generated constructor stub
 	}
-	
+
 
 	/**
 	 * Methode pour ajouter un Rectangle au DAO.
@@ -33,7 +32,7 @@ public class DaoRectangle extends DAO<Rectangle> {
 
 	@Override
 	public Rectangle create(Rectangle rectangle) throws IOException, SQLException {
-		
+
 		try {
 			PreparedStatement prepare = connection.prepareStatement(
 					"INSERT INTO Figure (figure) VALUES(?)");
@@ -114,6 +113,7 @@ public class DaoRectangle extends DAO<Rectangle> {
 		} else {
 			return null;
 		}
+		System.out.println("Mise à jour de "+rectangle.getFigure()+" avec succès");
 		return rectangle;
 	}
 
@@ -124,7 +124,7 @@ public class DaoRectangle extends DAO<Rectangle> {
 	 */
 	@Override
 	public Rectangle Search(String rectangle) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
-		
+
 		Rectangle rectangleSearch = null;
 		try {
 			PreparedStatement req = connection.prepareStatement(
@@ -147,36 +147,36 @@ public class DaoRectangle extends DAO<Rectangle> {
 		return rectangleSearch;
 
 	}
-	
+
 	/**
 	 * Retourne tout les rectangle du DAO
 	 */
 	@Override
 	public ArrayList<Rectangle> getAll() {
 		// TODO Auto-generated method stub
-		  ArrayList<Rectangle> res = new ArrayList<Rectangle>();
-	        try {
-	            PreparedStatement prepare = connection.prepareStatement(
-	                    "SELECT figure FROM Rectangle");
-	            ResultSet result = prepare.executeQuery();
-	            while (result.next()) {
-	                try {
-						res.add(this.Search(result.getString("figure")));
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            return new ArrayList<Rectangle>();
-	        }
-	        return res;
+		ArrayList<Rectangle> res = new ArrayList<Rectangle>();
+		try {
+			PreparedStatement prepare = connection.prepareStatement(
+					"SELECT figure FROM Rectangle");
+			ResultSet result = prepare.executeQuery();
+			while (result.next()) {
+				try {
+					res.add(this.Search(result.getString("figure")));
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return new ArrayList<Rectangle>();
+		}
+		return res;
 	}
 
 
-	
+
 }

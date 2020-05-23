@@ -62,36 +62,6 @@ public class Triangle extends Figure {
 
 	    }
 	    
-	    /**
-	     * comparaison.
-	     */
-	    @Override
-	    public boolean equals(final Object obj) {
-	       
-	        Triangle Point = (Triangle) obj;
-	        if (Point1 == null) {
-	            if (Point.Point1 != null) {
-	                return false;
-	            }
-	        } else if (!Point1.equals(Point.Point1)) {
-	            return false;
-	        }
-	        if (Point2 == null) {
-	            if (Point.Point2 != null) {
-	                return false;
-	            }
-	        } else if (!Point2.equals(Point.Point2)) {
-	            return false;
-	        }
-	        if (Point3 == null) {
-	            if (Point.Point3 != null) {
-	                return false;
-	            }
-	        } else if (!Point3.equals(Point.Point3)) {
-	            return false;
-	        }
-	        return true;
-	    }
 	    
 	    /**
 	     * Retourne le triangle sous forme d'une chaine de caracteres.
@@ -103,6 +73,11 @@ public class Triangle extends Figure {
 	                + ", " + this.Point3 + ").";
 	       
 	    }
+		@Override
+		public boolean equals(Object obj) {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
 
 	
