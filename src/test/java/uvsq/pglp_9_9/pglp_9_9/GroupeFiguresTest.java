@@ -18,7 +18,7 @@ public class GroupeFiguresTest {
 	        Cercle C = new Cercle("C", new Point(5,4),10);
 	        Grp.Ajouter(C);
 	        Grp.Ajouter(C);
-	        assertTrue(Grp.getListe().size() == 1 && Grp.getListe().get(0) == C);
+	        assertTrue(Grp.getListe().size() == 2 && Grp.getListe().get(0) == C);
 	    }
 	    @Test
 	    public void testSuprimer() throws Exception {
@@ -26,7 +26,7 @@ public class GroupeFiguresTest {
 	        Cercle c = new Cercle("C", new Point(1,1),10);
 	        Grp.Ajouter(c);
 	        Grp.Suprimer(c);
-	        assertTrue(Grp.getListe().isEmpty());
+	     	assertEquals(Grp.getListe().size(),1);
 	    }
 	   
 	    @Test

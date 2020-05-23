@@ -9,7 +9,7 @@ public class RectangleTest {
 	@Test
 	public void testConstructeur() throws Exception {
 		Rectangle R = new Rectangle("R", new Point(4,2), 10, 3);
-		assertEquals(R.toString(), "Rectangle (position = (4,2)) (longueur = 10, largeur = 3)");
+		assertEquals(R.toString(), "Rectangle (Point haut à gauche = (4,2)) (longueur = 10, largeur = 3)");
 		
 	}
 	@Test 
